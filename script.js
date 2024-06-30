@@ -99,3 +99,21 @@ const arrCompliments = [
     "If you were a scent, you'd be lavender, calming and lovely. 🌿❤️",
     "You're the home I've always dreamed of. 🏡❤️"
 ];
+
+button.addEventListener('click', function() {
+    generate();
+});
+
+function generate() {
+    var randomCompliment = arrCompliments[Math.floor(Math.random() * arrCompliments.length)];
+    
+    // Trigger reanimation by removing and re-adding the element
+    generatedText.classList.remove('generated-compliment'); // Remove animation class
+    void generatedText.offsetWidth; // Trigger reflow
+    generatedText.classList.add('generated-compliment'); // Add animation class again
+    
+    // Delay setting new text to ensure reanimation
+    setTimeout(function() {
+        generatedText.textContent = randomCompliment;
+    }, 50); // Adjust as needed
+}
