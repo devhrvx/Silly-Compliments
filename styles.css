@@ -1,0 +1,57 @@
+body {
+    color: #fff;
+    background-color: #232323;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    font-family: 'DM Sans', sans-serif;
+    text-align: center;
+    background-color: #363636;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(252, 162, 219, 0.263);
+    transition: 1s ease-out;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+h1 {
+    margin-bottom: -1%;
+    font-size: 25px;
+}
+p {
+    margin-top: 0px;
+    font-size: 15px;
+}
+
+button {
+    background-color: #ff7abc;
+    border: none;
+    border-radius: 12px;
+    color: rgb(233, 233, 233);
+    padding: 8px 25px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.5s ease, transform 0.5s ease;
+}
+
+button:hover {
+    transform: scale(1.06);
+    background-color: #ff63be;
+}
+
+
+.generated-compliment {
+    font-size: 30px;
+    margin: 20px 0;
+    font-family: 'Playwrite IT Moderna', sans-serif;
+}
