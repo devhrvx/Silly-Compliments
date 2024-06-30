@@ -106,14 +106,12 @@ button.addEventListener('click', function() {
 
 function generate() {
     var randomCompliment = arrCompliments[Math.floor(Math.random() * arrCompliments.length)];
-    
-    // Trigger reanimation by removing and re-adding the element
-    generatedText.classList.remove('generated-compliment'); // Remove animation class
-    void generatedText.offsetWidth; // Trigger reflow
-    generatedText.classList.add('generated-compliment'); // Add animation class again
-    
-    // Delay setting new text to ensure reanimation
+    generatedText.classList.remove('generated-compliment');
+    void generatedText.offsetWidth;
+    generatedText.classList.add('generated-compliment');
+
     setTimeout(function() {
         generatedText.textContent = randomCompliment;
-    }, 50); // Adjust as needed
+    }, 20);
+    button.textContent = 'Another one!';
 }
