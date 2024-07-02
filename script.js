@@ -1,6 +1,8 @@
 var button = document.querySelector('button');
 var generatedText = document.querySelector('.generated-compliment');
 var body = document.querySelector('body');
+var heartsContainer = document.querySelector('.hearts-container');
+var starsContainer = document.querySelector('.stars-container');
 
 const arrCompliments = [
     "You're so efficient, you can cook Minute rice in 30 seconds. ⏱️🍚",
@@ -101,11 +103,9 @@ const arrCompliments = [
 ];
 
 button.addEventListener('click', function() {
-    createHearts();
+    const emoji = generate();
+    createHeartsAndStars(emoji);
     bodyColorChange();
-    generate();
-    createHearts();
-    setTimeout(createHearts, 100);
 });
 
 function generate() {
@@ -118,6 +118,7 @@ function generate() {
         generatedText.textContent = randomCompliment;
     }, 20);
     button.textContent = 'Another one!';
+    return randomCompliment.slice(-2);
 }
 
 function bodyColorChange() {
@@ -126,18 +127,33 @@ function bodyColorChange() {
     body.classList.add('body-animate');
 }
 
-function createHearts() {
+function createHeartsAndStars(emoji) {
         const heart = document.createElement('div');
+        const stars = document.createElement('div');
         heart.classList.add('heart');
-        heart.textContent = '❤️';
+        stars.classList.add('stars');
+        heart.textContent = emoji[0];
+        stars.textContent = emoji[1];
         heart.style.left = Math.random() * 100 + 'vw';
+        stars.style.left = Math.random() * 100 + 'vw';
         heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+        stars.style.animationDuration = Math.random() * 2 + 3 + 's';
+        starsContainer.appendChild(stars);
         heartsContainer.appendChild(heart);
 
         heart.addEventListener('animationend', function() {
             heart.remove();
         });
+        stars.addEventListener('animationend', function() {
+            stars.remove();
+        });
     
     void heartsContainer.offsetWidth;
+    void starsContainer.offsetWidth;
     heartsContainer.classList.add('hearts-container-animate');
+    starsContainer.classList.add('stars-container-animate');
+    setTimeout(function() {
+        heartsContainer.classList.remove('hearts-container-animate');
+        starsContainer.classList.remove('stars-container-animate');
+    }, 5000);
 }

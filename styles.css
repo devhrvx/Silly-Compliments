@@ -86,7 +86,7 @@ button:hover {
     100% { background-color: #232323; }
 }
 
-.heart {
+.heart, .stars {
     position: absolute;
     font-size: 24px;
     z-index: -1;
@@ -96,9 +96,11 @@ button:hover {
     0% {
         top: -50px;
         opacity: 1;
+        transform: rotateZ(0deg);
     }
     100% {
         top: 100vh;
         opacity: 0;
+        transform: rotateZ(360deg);
     }
 }
