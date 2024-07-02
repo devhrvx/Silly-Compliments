@@ -6,6 +6,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    overflow: hidden;
 }
 
 .container {
@@ -70,4 +71,34 @@ button:hover {
 
 @keyframes blink-caret {
     50% { border-color: transparent }
+}
+
+.body-animate {
+    animation: body-color-change 5s ease;
+}
+
+@keyframes body-color-change {
+    0% { background-color: #232323; }
+    20% { background-color: #ff58e0; }
+    40% { background-color: #ef80d3; }
+    60% { background-color: #fb75a0; }
+    80% { background-color: #fb4f9c; }
+    100% { background-color: #232323; }
+}
+
+.heart {
+    position: absolute;
+    font-size: 24px;
+    z-index: -1;
+    animation: fall linear infinite;
+}
+@keyframes fall {
+    0% {
+        top: -50px;
+        opacity: 1;
+    }
+    100% {
+        top: 100vh;
+        opacity: 0;
+    }
 }

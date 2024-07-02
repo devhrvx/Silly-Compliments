@@ -1,6 +1,6 @@
 var button = document.querySelector('button');
 var generatedText = document.querySelector('.generated-compliment');
-
+var body = document.querySelector('body');
 
 const arrCompliments = [
     "You're so efficient, you can cook Minute rice in 30 seconds. ⏱️🍚",
@@ -101,7 +101,11 @@ const arrCompliments = [
 ];
 
 button.addEventListener('click', function() {
+    createHearts();
+    bodyColorChange();
     generate();
+    createHearts();
+    setTimeout(createHearts, 100);
 });
 
 function generate() {
@@ -114,4 +118,26 @@ function generate() {
         generatedText.textContent = randomCompliment;
     }, 20);
     button.textContent = 'Another one!';
+}
+
+function bodyColorChange() {
+    body.classList.remove('body-animate');
+    void body.offsetWidth;
+    body.classList.add('body-animate');
+}
+
+function createHearts() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.textContent = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+        heartsContainer.appendChild(heart);
+
+        heart.addEventListener('animationend', function() {
+            heart.remove();
+        });
+    
+    void heartsContainer.offsetWidth;
+    heartsContainer.classList.add('hearts-container-animate');
 }
