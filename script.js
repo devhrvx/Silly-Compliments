@@ -1,8 +1,8 @@
 var button = document.querySelector('button');
 var generatedText = document.querySelector('.generated-compliment');
 var body = document.querySelector('body');
-var heartsContainer = document.querySelector('.hearts-container');
-var starsContainer = document.querySelector('.stars-container');
+var emoji1 = document.querySelector('.emoji-1');
+var emoji2 = document.querySelector('.emoji-2');
 
 const arrCompliments = [
     "You're so efficient, you can cook Minute rice in 30 seconds. ⏱️🍚",
@@ -104,7 +104,7 @@ const arrCompliments = [
 
 button.addEventListener('click', function() {
     const emoji = generate();
-    createHeartsAndStars(emoji);
+    emojiRain(emoji);
     bodyColorChange();
 });
 
@@ -118,7 +118,9 @@ function generate() {
         generatedText.textContent = randomCompliment;
     }, 20);
     button.textContent = 'Another one!';
-    return randomCompliment.slice(-2);
+
+    let emojiss = ["😊", "😍", "😂", "🥰", "🥳", "🤩", "😎", "🤗", "😇", "😌", "😋", "😜", "😘", "♥"];
+    return emojiss;
 }
 
 function bodyColorChange() {
@@ -127,33 +129,25 @@ function bodyColorChange() {
     body.classList.add('body-animate');
 }
 
-function createHeartsAndStars(emoji) {
-        const heart = document.createElement('div');
-        const stars = document.createElement('div');
-        heart.classList.add('heart');
-        stars.classList.add('stars');
-        heart.textContent = emoji[0];
-        stars.textContent = emoji[1];
-        heart.style.left = Math.random() * 100 + 'vw';
-        stars.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-        stars.style.animationDuration = Math.random() * 2 + 3 + 's';
-        starsContainer.appendChild(stars);
-        heartsContainer.appendChild(heart);
+function emojiRain(emoji) {
+    const container1 = document.querySelector('.emoji-1');
+    const container2 = document.querySelector('.emoji-2');
 
-        heart.addEventListener('animationend', function() {
-            heart.remove();
+    const createEmojiElement = function(emojiChar) {
+        const emojiElement = document.createElement('div');
+        emojiElement.textContent = emojiChar;
+        emojiElement.style.position = 'absolute';
+        emojiElement.style.left = Math.random() * 100 + 'vw';
+        emojiElement.style.animation = 'fall 5s linear';
+        container1.appendChild(emojiElement);
+
+        // Remove emoji after animation ends
+        emojiElement.addEventListener('animationend', function() {
+            emojiElement.remove();
         });
-        stars.addEventListener('animationend', function() {
-            stars.remove();
-        });
-    
-    void heartsContainer.offsetWidth;
-    void starsContainer.offsetWidth;
-    heartsContainer.classList.add('hearts-container-animate');
-    starsContainer.classList.add('stars-container-animate');
-    setTimeout(function() {
-        heartsContainer.classList.remove('hearts-container-animate');
-        starsContainer.classList.remove('stars-container-animate');
-    }, 5000);
+    };
+
+    // Create two emojis falling at a time
+    createEmojiElement(emoji[0]);
+    createEmojiElement(emoji[1]);
 }
